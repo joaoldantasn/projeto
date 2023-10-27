@@ -1,0 +1,14 @@
+INSERT INTO tb_grupo(nome, url_Image, descricao, palavra_Chave, moment) VALUES ('Geral', 'imaginha', 'Grupo Geral da Academia', 'Imfit',TIMESTAMP WITH TIME ZONE '2022-07-25T13:00:00Z');
+
+
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Supino', 'Imagem supino');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Agachamento', 'Imagem Agachamento');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Levantamento Terra', 'Imagem lev.terra');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Supino Inclinado', 'Imagem supino inc');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Puxada pronada', 'Imagem puxada pronada');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Triceps corda', 'Imagem triceps corda');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Extensora', 'Imagem extensora');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Desenvolvimento Ombros', 'Imagem des.ombro');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Voador', 'Imagem voador');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Flexora', 'Imagem flexora');
+INSERT INTO tb_exercicio(nome, url_Image) VALUES ('Remada', 'Imagem remada');
