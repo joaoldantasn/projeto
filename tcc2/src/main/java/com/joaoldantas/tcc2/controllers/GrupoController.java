@@ -19,6 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.joaoldantas.tcc2.dtos.GrupoDTO;
 import com.joaoldantas.tcc2.services.GrupoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/grupos")
 public class GrupoController {
@@ -38,7 +40,7 @@ public class GrupoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<GrupoDTO> insert(@RequestBody GrupoDTO dto){
+	public ResponseEntity<GrupoDTO> insert(@Valid @RequestBody GrupoDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(dto.getId()).toUri();
@@ -46,7 +48,7 @@ public class GrupoController {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<GrupoDTO> update(@PathVariable Long id, @RequestBody GrupoDTO dto){
+	public ResponseEntity<GrupoDTO> update(@Valid @PathVariable Long id, @RequestBody GrupoDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok(dto);
 	}

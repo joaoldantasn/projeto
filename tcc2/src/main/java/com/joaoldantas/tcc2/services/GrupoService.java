@@ -1,7 +1,5 @@
 package com.joaoldantas.tcc2.services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -12,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.joaoldantas.tcc2.dtos.GrupoDTO;
 import com.joaoldantas.tcc2.entities.Grupo;
+import com.joaoldantas.tcc2.exceptions.DataBaseException;
+import com.joaoldantas.tcc2.exceptions.ResourceNotFoundException;
 import com.joaoldantas.tcc2.repositories.GrupoRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -24,10 +24,9 @@ public class GrupoService {
 	
 	@Transactional(readOnly = true)
 	public GrupoDTO findById(Long id) {
-		Optional<Grupo> result = repository.findById(id);
-		Grupo grupo = result.get();
-		GrupoDTO dto = new GrupoDTO(grupo);
-		return dto;
+		Grupo result = repository.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException("Recurso não encontrado"));
+		return new GrupoDTO(result);
 	}
 	@Transactional(readOnly = true)
 	public Page<GrupoDTO> findAll(Pageable pageable){
@@ -51,18 +50,18 @@ public class GrupoService {
 			entity = repository.save(entity);
 			return new GrupoDTO(entity);
 		}catch(EntityNotFoundException e){
-			throw new EntityNotFoundException();
+			throw new ResourceNotFoundException("Recurso não encontrado");
 		}
 	}
 	
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
 		if(!repository.existsById(id)) {
-			throw new EntityNotFoundException();
+			throw new ResourceNotFoundException("Recurso não encotrado");
 		}try {
 			repository.deleteById(id);
 		}catch(DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("Erro");
+			throw new DataBaseException("Falha de integridade referencial");
 		}
 	}
 	
