@@ -1,0 +1,16 @@
+package com.joaoldantas.tcc2.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.joaoldantas.tcc2.services.GrupoService;
+
+@RestController
+@RequestMapping(value = "/grupos")
+public class GrupoController {
+	
+	@Autowired
+	private GrupoService service;
+
+}

@@ -1,0 +1,91 @@
+package com.joaoldantas.tcc2.entities;
+
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_treino")
+public class Treino {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String nome;
+	private String grupoMuscular;
+	private Instant moment;
+	
+	@JoinTable(name = "tb_treino_usuario", joinColumns = @JoinColumn(name = "treino_id"), inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+	private Set<Usuario> usuarios = new HashSet<>();
+	
+	public Treino() {
+		
+	}
+
+	public Treino(Long id, String nome, String grupoMuscular, Instant moment) {
+		this.id = id;
+		this.nome = nome;
+		this.grupoMuscular = grupoMuscular;
+		this.moment = moment;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getGrupoMuscular() {
+		return grupoMuscular;
+	}
+
+	public void setGrupoMuscular(String grupoMuscular) {
+		this.grupoMuscular = grupoMuscular;
+	}
+
+	public Instant getMoment() {
+		return moment;
+	}
+
+	public void setMoment(Instant moment) {
+		this.moment = moment;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Treino other = (Treino) obj;
+		return Objects.equals(id, other.id);
+	}
+	
+}

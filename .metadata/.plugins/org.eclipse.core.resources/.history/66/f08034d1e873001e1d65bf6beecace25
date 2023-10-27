@@ -1,0 +1,32 @@
+package com.joaoldantas.tcc2.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.joaoldantas.tcc2.dtos.GrupoDTO;
+import com.joaoldantas.tcc2.entities.Grupo;
+import com.joaoldantas.tcc2.repositories.GrupoRepository;
+
+@Service
+public class GrupoService {
+	
+	@Autowired
+	private GrupoRepository repository;
+	
+	
+	public GrupoDTO findById(Long id) {
+		Optional<Grupo> result = repository.findById(id);
+		Grupo grupo = result.get();
+		GrupoDTO dto = new GrupoDTO(grupo);
+		return dto;
+	}
+	
+	public Page<GrupoDTO> findAll(Pageable pageable){
+		Page<Grupo> result = repository.findAll(pageable);
+		return result.map(x -> new GrupoDTO(x));
+	}
+}

@@ -1,0 +1,67 @@
+package com.joaoldantas.tcc2.entities;
+
+import java.util.Objects;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Exercicio {
+	
+	private Long id;
+	private String nome;
+	private String imgUrl;
+	
+	public Exercicio() {
+		
+	}
+
+	public Exercicio(Long id, String nome, String imgUrl) {
+		this.id = id;
+		this.nome = nome;
+		this.imgUrl = imgUrl;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Exercicio other = (Exercicio) obj;
+		return Objects.equals(id, other.id);
+	}
+	
+	
+	
+}

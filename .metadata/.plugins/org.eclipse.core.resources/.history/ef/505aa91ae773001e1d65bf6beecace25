@@ -1,0 +1,17 @@
+package com.joaoldantas.tcc2.repositories;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.joaoldantas.tcc2.entities.Grupo;
+
+@Repository
+public interface GrupoRepository extends JpaRepository<Grupo, Long>{
+	
+	@Query("SELECT obj FROM Grupo grup " 
+			+ "WHERE UPPER(grup.nome) LIKE UPPER(CONCAT('%',:nome,'%'))")
+		Page<Grupo> searchByName(String name, Pageable pageable);
+}

@@ -1,0 +1,15 @@
+package com.joaoldantas.tcc2.dtos;
+
+import java.time.Instant;
+
+public class GrupoMinDTO {
+	
+	private Long id;
+	private String nome;
+	private String urlImage;
+	private String descricao;
+	private String palavraChave;
+	private Instant moment;
+	
+	
+}

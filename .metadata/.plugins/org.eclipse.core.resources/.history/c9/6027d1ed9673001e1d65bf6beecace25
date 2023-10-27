@@ -1,0 +1,14 @@
+package com.joaoldantas.tcc2.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.joaoldantas.tcc2.repositories.GrupoRepository;
+
+@Service
+public class GrupoService {
+	
+	@Autowired
+	private GrupoRepository repository;
+	
+}
