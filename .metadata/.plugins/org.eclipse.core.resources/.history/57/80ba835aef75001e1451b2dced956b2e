@@ -1,0 +1,13 @@
+package com.joaoldantas.tcc2.dtos;
+
+public class TreinoDTO {
+	private String nome;
+	private String grupoMuscular;
+	
+	public TreinoDTO(String nome, String grupoMuscular) {
+		this.nome = nome;
+		this.grupoMuscular = grupoMuscular;
+	}
+	
+	
+}

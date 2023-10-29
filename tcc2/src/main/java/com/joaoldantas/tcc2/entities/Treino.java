@@ -46,6 +46,17 @@ public class Treino {
 		this.moment = moment;
 	}
 
+	public Treino(Long id, String nome, String grupoMuscular, Instant moment, Set<Exercicio> exercicios,
+			Set<Usuario> usuarios) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.grupoMuscular = grupoMuscular;
+		this.moment = moment;
+		this.exercicios = exercicios;
+		this.usuarios = usuarios;
+	}
+
 	public Long getId() {
 		return id;
 	}

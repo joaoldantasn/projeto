@@ -1,0 +1,12 @@
+package com.joaoldantas.tcc2.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.joaoldantas.tcc2.repositories.TreinoRepository;
+
+public class TreinoService {
+	
+	@Autowired
+	private TreinoRepository repository;
+	
+}

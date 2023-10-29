@@ -1,0 +1,10 @@
+package com.joaoldantas.tcc2.dtos;
+
+import java.time.Instant;
+
+public class TreinoDTO {
+	private Long id;
+	private String nome;
+	private String grupoMuscular;
+	private Instant moment;
+}

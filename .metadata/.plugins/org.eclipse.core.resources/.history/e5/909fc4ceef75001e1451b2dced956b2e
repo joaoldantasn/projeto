@@ -1,0 +1,74 @@
+package com.joaoldantas.tcc2.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.joaoldantas.tcc2.dtos.GrupoDTO;
+import com.joaoldantas.tcc2.dtos.TreinoDTO;
+import com.joaoldantas.tcc2.entities.Grupo;
+import com.joaoldantas.tcc2.entities.Treino;
+import com.joaoldantas.tcc2.exceptions.DataBaseException;
+import com.joaoldantas.tcc2.exceptions.ResourceNotFoundException;
+import com.joaoldantas.tcc2.repositories.TreinoRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+
+public class TreinoService {
+	
+	@Autowired
+	private TreinoRepository repository;
+	
+	@Transactional(readOnly = true)
+	public TreinoDTO findById(Long id) {
+		Treino result = repository.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException("Recurso não encontrado"));
+		return new TreinoDTO(result);
+	}
+	@Transactional(readOnly = true)
+	public Page<TreinoDTO> findAll(Pageable pageable){
+		Page<Treino> result = repository.findAll(pageable);
+		return result.map(x -> new TreinoDTO(x));
+	}
+	
+	@Transactional
+	public GrupoDTO insert(GrupoDTO dto) {
+		Grupo entity = new Grupo();
+		copyDtoToEntity(dto, entity);
+		entity = repository.save(entity);
+		return new GrupoDTO(entity);
+	}
+	
+	@Transactional
+	public GrupoDTO update(Long id, GrupoDTO dto) {
+		try {
+			Grupo entity = repository.getReferenceById(id);
+			copyDtoToEntity(dto, entity);
+			entity = repository.save(entity);
+			return new GrupoDTO(entity);
+		}catch(EntityNotFoundException e){
+			throw new ResourceNotFoundException("Recurso não encontrado");
+		}
+	}
+	
+	@Transactional(propagation = Propagation.SUPPORTS)
+	public void delete(Long id) {
+		if(!repository.existsById(id)) {
+			throw new ResourceNotFoundException("Recurso não encotrado");
+		}try {
+			repository.deleteById(id);
+		}catch(DataIntegrityViolationException e) {
+			throw new DataBaseException("Falha de integridade referencial");
+		}
+	}
+	
+	private void copyDtoToEntity(GrupoDTO dto, Grupo entity) {
+		entity.setNome(dto.getNome());
+		entity.setPalavraChave(dto.getPalavraChave());
+		entity.setUrlImage(dto.getUrlImage());;
+	}
+	
+}

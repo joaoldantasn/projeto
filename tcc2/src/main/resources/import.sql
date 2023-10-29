@@ -12,3 +12,5 @@ INSERT INTO tb_exercicio(nome, img_Url) VALUES ('Desenvolvimento Ombros', 'Image
 INSERT INTO tb_exercicio(nome, img_Url) VALUES ('Voador', 'Imagem voador');
 INSERT INTO tb_exercicio(nome, img_Url) VALUES ('Flexora', 'Imagem flexora');
 INSERT INTO tb_exercicio(nome, img_Url) VALUES ('Remada', 'Imagem remada');
+
+INSERT INTO tb_treino(nome, grupo_Muscular, moment) VALUES ('Treino A', 'Peito e Triceps', TIMESTAMP WITH TIME ZONE '2022-07-25T13:00:00Z');
