@@ -1,0 +1,5 @@
+package com.joaoldantas.tcc2.dtos;
+
+public class UsuarioDTO {
+
+}

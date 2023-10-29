@@ -92,6 +92,10 @@ public class Treino {
 	public Set<Exercicio> getExercicios() {
 		return exercicios;
 	}
+	
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
+	}
 
 	@Override
 	public int hashCode() {

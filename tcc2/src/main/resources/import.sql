@@ -14,3 +14,4 @@ INSERT INTO tb_exercicio(nome, img_Url) VALUES ('Flexora', 'Imagem flexora');
 INSERT INTO tb_exercicio(nome, img_Url) VALUES ('Remada', 'Imagem remada');
 
 INSERT INTO tb_treino(nome, grupo_Muscular, moment) VALUES ('Treino A', 'Peito e Triceps', TIMESTAMP WITH TIME ZONE '2022-07-25T13:00:00Z');
+INSERT INTO tb_usuario(nome, cpf, email, senha, celular, data_Nasc) VALUES ('Marco Vinicius', '1111111', 'marquinhos@gmail.com', '1234', '4002-8922', '1973-05-06');

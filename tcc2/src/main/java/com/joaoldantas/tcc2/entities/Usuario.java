@@ -111,6 +111,13 @@ public class Usuario {
 	public void setDataNasc(LocalDate dataNasc) {
 		this.dataNasc = dataNasc;
 	}
+	public Set<Treino> getTreinos() {
+		return treinos;
+	}
+
+	public Set<Grupo> getGrupos() {
+		return grupos;
+	}
 
 	@Override
 	public int hashCode() {
