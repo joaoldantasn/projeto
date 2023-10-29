@@ -1,9 +1,13 @@
 package com.joaoldantas.tcc2.entities;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,9 +18,10 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_usuario")
-public class Usuario {
+public class Usuario implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +46,13 @@ public class Usuario {
 				inverseJoinColumns = @JoinColumn(name = "grupo_id")
 			)
 	private Set<Grupo> grupos = new HashSet<>();
+	
+	@ManyToMany
+	@JoinTable(name = "tb_usuario_role",
+			joinColumns = @JoinColumn(name = "usuario_id"),
+			inverseJoinColumns =  @JoinColumn(name = "role_id")
+			)
+	private Set<Role> roles = new HashSet<>();
 	
 	public Usuario() {
 		
@@ -119,6 +131,23 @@ public class Usuario {
 		return grupos;
 	}
 
+	public Set<Role> getRoles() {
+		return roles;
+	}
+	
+	public void addRole(Role role) {
+		roles.add(role);
+	}
+	
+	public boolean hasRole(String roleName) {
+		for(Role role: roles) {
+			if(role.getAuthority().equals(roleName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -134,6 +163,48 @@ public class Usuario {
 			return false;
 		Usuario other = (Usuario) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return roles;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return senha;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return cpf;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 }

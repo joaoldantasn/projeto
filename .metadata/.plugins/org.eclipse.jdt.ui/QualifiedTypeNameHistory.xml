@@ -19,7 +19,6 @@
     <fullyQualifiedTypeName name="java.awt.print.Pageable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.joaoldantas.tcc2.services.GrupoService"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
@@ -48,8 +47,13 @@
     <fullyQualifiedTypeName name="com.joaoldantas.tcc2.dtos.GrupoDTO"/>
     <fullyQualifiedTypeName name="com.joaoldantas.tcc2.exceptions.DataBaseException"/>
     <fullyQualifiedTypeName name="com.joaoldantas.tcc2.exceptions.ResourceNotFoundException"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
-    <fullyQualifiedTypeName name="com.joaoldantas.tcc2.repositories.ExercicioRepository"/>
     <fullyQualifiedTypeName name="com.joaoldantas.tcc2.services.ExercicioService"/>
     <fullyQualifiedTypeName name="com.joaoldantas.tcc2.dtos.ExercicioDTO"/>
+    <fullyQualifiedTypeName name="com.joaoldantas.tcc2.repositories.TreinoRepository"/>
+    <fullyQualifiedTypeName name="com.joaoldantas.tcc2.dtos.TreinoDTO"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.joaoldantas.tcc2.repositories.ExercicioRepository"/>
+    <fullyQualifiedTypeName name="com.joaoldantas.tcc2.entities.Treino"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.joaoldantas.tcc2.repositories.UsuarioRepository"/>
 </qualifiedTypeNameHistroy>

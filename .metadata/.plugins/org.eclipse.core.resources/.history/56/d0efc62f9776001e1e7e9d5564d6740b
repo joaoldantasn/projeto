@@ -1,0 +1,10 @@
+package com.joaoldantas.tcc2.projections;
+
+public interface UserDetailsProjection {
+	
+	String getCpf();
+	String getSenha();
+	Long getRoleId();
+	String getAuthority();
+	
+}
